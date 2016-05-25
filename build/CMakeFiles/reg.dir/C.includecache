@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../su.h
+stdio.h
+-
+
+../utils.h
+
+../vector.h
+stdlib.h
+-
+
+/home/mau/Documents/Topicos_em_Ling_Prog/topicos-em-linguagem-de-programacao/Trabalho/reg/semblance.c
+semblance.h
+/home/mau/Documents/Topicos_em_Ling_Prog/topicos-em-linguagem-de-programacao/Trabalho/reg/semblance.h
+math.h
+-
+string.h
+-
+vector.h
+-
+utils.h
+-
+
+/home/mau/Documents/Topicos_em_Ling_Prog/topicos-em-linguagem-de-programacao/Trabalho/reg/semblance.h
+vector.h
+-
+su.h
+-
+

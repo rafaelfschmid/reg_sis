@@ -1,0 +1,1 @@
+/home/mau/Documents/Topicos_em_Ling_Prog/topicos-em-linguagem-de-programacao/Trabalho/reg/build/CMakeFiles/reg.dir

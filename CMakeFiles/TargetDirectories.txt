@@ -1,0 +1,3 @@
+/home/mau/Documents/Topicos_em_Ling_Prog/topicos-em-linguagem-de-programacao/Trabalho/reg/CMakeFiles/edit_cache.dir
+/home/mau/Documents/Topicos_em_Ling_Prog/topicos-em-linguagem-de-programacao/Trabalho/reg/CMakeFiles/rebuild_cache.dir
+/home/mau/Documents/Topicos_em_Ling_Prog/topicos-em-linguagem-de-programacao/Trabalho/reg/CMakeFiles/reg.dir
