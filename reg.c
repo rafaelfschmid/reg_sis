@@ -279,13 +279,25 @@ err = clEnqueueNDRangeKernel(queue, kernel, 1, NULL, &globalSize, &localSize, 0,
 			print_opencl_error(stderr, err);
 
     
-    cl_mem *d_ap,*d_traces;
+    cl_mem *d_aperture,*d_traces;
 
-    //d_ap = clCreateBuffer(context, CL_MEM_WRITE_ONLY, 3*sizeof(float) + ap->*sizeof(aperture_t), NULL, NULL);
-    d_trace = clCreateBuffer(context, CL_MEM_WRITE_ONLY, 3*sizeof(float) + ap->*sizeof(aperture_t), NULL, NULL);
+    d_traces = clCreateBuffer(context, CL_MEM_READ_ONLY, ap->traces.len*sizeof(su_trace_t), NULL, NULL);
+    d_aperture = clCreateBuffer(context, CL_MEM_READ_ONLY, ap->traces.len*sizeof(su_trace_t*), NULL, NULL);
+
+    for(int k = 0; k < ap->traces.len; k++) {
+    	d_traces[k] = clCreateBuffer(context, CL_MEM_READ_ONLY, ap->traces[k].len*sizeof(float), NULL, NULL);
+    	d_aperture[k] = &d_traces[k];
+    }
+
     d_s = clCreateBuffer(context, CL_MEM_WRITE_ONLY, amount_of_possibilities*sizeof(float), NULL, NULL);
     d_stack = clCreateBuffer(context, CL_MEM_WRITE_ONLY, amount_of_possibilities*sizeof(float), NULL, NULL);
 
+    // Write our data set into the input array in device memory
+	err |= clEnqueueWriteBuffer(queue, d_traces, CL_TRUE, 0, ap->traces.len*sizeof(su_trace_t), ap->traces, 0, NULL, NULL);
+
+	for(int k = 0; k < ap->traces.len; k++) {
+		err |= clEnqueueWriteBuffer(queue, d_traces[k], CL_TRUE, 0, ap->traces[k].len*sizeof(float), ap->traces[k], 0, NULL, NULL);
+	}
 
 
     //#pragma omp parallel for schedule(dynamic) num_threads(8)
